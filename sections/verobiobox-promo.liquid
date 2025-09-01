@@ -1,0 +1,97 @@
+<section class="py-16 md:py-24">
+  <div class="flex flex-col gap-8">
+    <div class="text-center">
+      <h2 class="text-burnt-sienna text-3xl font-bold leading-tight tracking-tight md:text-4xl font-playfair">{{ section.settings.title }}</h2>
+    </div>
+    <div class="p-4 @container">
+      <div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-center bg-white shadow-lg overflow-hidden">
+        <div class="w-full @xl:w-1/2 bg-center bg-no-repeat aspect-video @xl:aspect-auto @xl:h-full bg-cover" style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"></div>
+        <div class="flex w-full @xl:w-1/2 grow flex-col items-stretch justify-center gap-6 p-8 md:p-12">
+          <div class="flex flex-col gap-2">
+            <p class="text-burnt-sienna text-2xl font-bold leading-tight tracking-[-0.015em] font-playfair">{{ section.settings.promo_title }}</p>
+            <p class="text-sage-green text-base font-normal leading-normal font-lato">
+              {{ section.settings.promo_text }}
+            </p>
+          </div>
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center gap-2">
+              <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-beige">
+                <p class="text-burnt-sienna text-2xl font-bold">5</p>
+              </div>
+              <p class="text-burnt-sienna text-sm font-normal">Days</p>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-beige">
+                <p class="text-burnt-sienna text-2xl font-bold">12</p>
+              </div>
+              <p class="text-burnt-sienna text-sm font-normal">Hours</p>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-beige">
+                <p class="text-burnt-sienna text-2xl font-bold">30</p>
+              </div>
+              <p class="text-burnt-sienna text-sm font-normal">Mins</p>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-beige">
+                <p class="text-burnt-sienna text-2xl font-bold">45</p>
+              </div>
+              <p class="text-burnt-sienna text-sm font-normal">Secs</p>
+            </div>
+          </div>
+          <a href="{{ section.settings.button_link }}" class="btn btn-primary h-12 px-6 text-base font-bold">
+            <span class="truncate">{{ section.settings.button_text }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "VeroBioBox Promo",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Next VeroBioBox"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "promo_title",
+      "label": "Promo Title",
+      "default": "Limited Edition VeroBioBox"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo Text",
+      "default": "Discover a curated selection of our best-selling products and exclusive new releases in our next VeroBioBox. Subscribe now and don't miss out!"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "VeroBioBox Promo",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

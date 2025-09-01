@@ -1,0 +1,76 @@
+<section class="py-16 md:py-24">
+  <div class="flex flex-col gap-12">
+    <div class="flex flex-col gap-4 text-center">
+      <h2 class="text-burnt-sienna text-3xl font-bold leading-tight tracking-tight md:text-4xl font-playfair">
+        {{ section.settings.title }}
+      </h2>
+      <p class="text-sage-green text-base font-normal leading-normal max-w-3xl mx-auto font-lato">
+        {{ section.settings.subtitle }}
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {% for block in section.blocks %}
+        <div class="card flex flex-col items-center text-center gap-4 p-6">
+          <div class="text-sage-green p-3 bg-beige rounded-full">
+            {{ block.settings.icon }}
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-burnt-sienna text-lg font-bold leading-tight font-playfair">{{ block.settings.title }}</h3>
+            <p class="text-sage-green text-sm font-normal leading-normal font-lato">
+              {{ block.settings.text }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Commitment",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "I Nostri Valori"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "In VeroBelloBio, crediamo in una bellezza che fa bene a te e alla Terra. I nostri valori guidano tutto ciò che facciamo, dalla selezione degli ingredienti al packaging dei nostri prodotti."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "commitment",
+      "name": "Commitment",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Icon SVG"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Commitment",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

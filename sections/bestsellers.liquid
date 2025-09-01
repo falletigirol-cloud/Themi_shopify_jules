@@ -1,0 +1,71 @@
+<section class="py-16 md:py-24 bg-beige">
+  <div class="flex flex-col gap-8 text-center">
+    <h2 class="text-burnt-sienna text-3xl font-bold leading-tight tracking-tight md:text-4xl font-playfair">{{ section.settings.title }}</h2>
+    <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden -mx-4 px-4">
+      <div class="flex items-stretch p-4 gap-6">
+        {% for block in section.blocks %}
+          <div class="card flex h-full flex-1 flex-col gap-4 p-4 min-w-64">
+            <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg flex flex-col group overflow-hidden" style="background-image: url('{{ block.settings.image | img_url: 'master' }}');">
+              <div class="mt-auto p-4 bg-black/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="btn btn-primary w-full h-10 font-bold">Quick Add</button>
+              </div>
+            </div>
+            <div class="text-left">
+              <p class="text-burnt-sienna text-base font-medium leading-normal font-playfair">{{ block.settings.product_title }}</p>
+              <p class="text-sage-green text-sm font-normal leading-normal font-lato">{{ block.settings.product_description }}</p>
+              <p class="text-burnt-sienna text-base font-bold mt-1">{{ block.settings.product_price }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestsellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Best Sellers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "Product Description"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

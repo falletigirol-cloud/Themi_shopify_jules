@@ -1,0 +1,62 @@
+<div class="w-full">
+  <div class="flex min-h-[560px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-start justify-end px-6 pb-10 md:px-12 md:pb-12" style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRf9M78atB7xw73g3DKI3DuPwBcZRO09wwXTS9BLcAu0nxqbLJpUrmlCBRtdVUzaog8gJmmMB6hteh0spvJqaWQ4brBqP0rUPMxsBkDCN4Mwup4uGHLG5En327WjSY1FouaH9_6OEjXTP7wJmSHE4G51mDFTCK7TtBW1AkkK5wKievAmF4qKemPLwHc2EyeeIlU3lmcS3SeG6kxg2ogS1OQ6gSNFavliYb13BP_tZlXsnzYUnMGPBHoui4P8dbn0jdhTWKmyjYUTc");'>
+    <div class="flex flex-col gap-4 text-left max-w-xl">
+      <h1 class="text-white text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl font-playfair">
+        {{ section.settings.title }}
+      </h1>
+      <h2 class="text-white text-base font-normal leading-normal md:text-lg font-lato">
+        {{ section.settings.subtitle }}
+      </h2>
+    </div>
+    <div class="flex-wrap gap-4 flex">
+      <a href="{{ section.settings.button_1_link }}" class="btn btn-primary h-12 px-6 text-base font-bold">
+        <span class="truncate">{{ section.settings.button_1_text }}</span>
+      </a>
+      <a href="{{ section.settings.button_2_link }}" class="btn btn-secondary h-12 px-6 text-base font-bold">
+        <span class="truncate">{{ section.settings.button_2_text }}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Bellezza è Benessere, Dentro e Fuori"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Prodotti bio curati per la tua pelle. Una community vibrante per la tua autostima."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Scopri la VeroBioBox"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Unisciti alla Community"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    }
+  ]
+}
+{% endschema %}
