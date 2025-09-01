@@ -1,0 +1,26 @@
+<main class="flex flex-1 justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="layout-content-container flex w-full max-w-6xl flex-col gap-10">
+    <div class="text-center">
+      <p class="text-base font-medium text-sage-green">{{ blog.title }}</p>
+      <h1 class="text-5xl font-bold text-burnt-sienna tracking-tight mt-2 font-playfair">Bellezza Consapevole</h1>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for article in blog.articles %}
+        <div class="group flex flex-col gap-4">
+          <a href="{{ article.url }}">
+            <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-lg overflow-hidden" style="background-image: url('{{ article.image | img_url: 'master' }}');"></div>
+            <h3 class="text-burnt-sienna text-xl font-bold leading-snug group-hover:text-sage-green transition-colors font-playfair">{{ article.title }}</h3>
+            <p class="text-sage-green text-base font-normal leading-relaxed mt-2">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Blog Template",
+  "settings": []
+}
+{% endschema %}

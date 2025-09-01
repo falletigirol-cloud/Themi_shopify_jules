@@ -1,4 +1,7 @@
-<div class="w-full max-w-6xl mx-auto py-8 px-4">
+<div class="w-full max-w-6xl mx-auto py-8 px-4" data-cart-container>
+  <div class="loading-overlay hidden fixed inset-0 bg-white bg-opacity-75 z-50 items-center justify-center">
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-sage-green"></div>
+  </div>
   <div class="mb-6 px-4">
     <nav class="text-sm">
       <ol class="flex items-center space-x-2 text-sage-green">
@@ -14,25 +17,25 @@
       <div class="space-y-4 rounded-lg border border-light-gray bg-white p-6 shadow-sm">
         <div class="flex items-center justify-between border-b border-light-gray pb-4">
           <h3 class="text-lg font-semibold text-burnt-sienna font-playfair">Prodotti</h3>
-          <p class="text-sm text-sage-green">{{ cart.item_count }} articoli</p>
+          <p class="text-sm text-sage-green" data-cart-item-count>{{ cart.item_count }} articoli</p>
         </div>
-        <ul class="divide-y divide-light-gray">
+        <ul class="divide-y divide-light-gray" data-cart-items-container>
           {% for item in cart.items %}
-            <li class="flex items-center gap-6 py-6">
+            <li class="flex items-center gap-6 py-6" data-line-item="{{ item.key }}">
               <div class="h-24 w-24 flex-shrink-0">
                 <img alt="{{ item.title | escape }}" class="h-full w-full rounded-md object-cover" src="{{ item.image | img_url: 'medium' }}">
               </div>
               <div class="flex-1">
                 <h4 class="text-base font-semibold text-burnt-sienna">{{ item.product.title }}</h4>
                 <p class="text-sm text-sage-green">{{ item.variant.title }}</p>
-                <p class="mt-2 text-lg font-bold text-sage-green">{{ item.price | money }}</p>
+                <p class="mt-2 text-lg font-bold text-sage-green" data-line-item-price>{{ item.final_line_price | money }}</p>
               </div>
               <div class="flex items-center gap-2">
-                <button type="button" class="quantity-button flex h-8 w-8 items-center justify-center rounded-full border border-light-gray text-burnt-sienna hover:bg-beige" data-line="{{ forloop.index }}" data-action="decrement">-</button>
-                <input class="quantity-input w-10 rounded-md border-light-gray text-center text-sm font-medium focus:border-sage-green focus:ring-sage-green" type="number" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}">
-                <button type="button" class="quantity-button flex h-8 w-8 items-center justify-center rounded-full border border-light-gray text-burnt-sienna hover:bg-beige" data-line="{{ forloop.index }}" data-action="increment">+</button>
+                <button type="button" class="quantity-button flex h-8 w-8 items-center justify-center rounded-full border border-light-gray text-burnt-sienna hover:bg-beige" data-line-key="{{ item.key }}" data-action="decrement">-</button>
+                <input class="quantity-input w-10 rounded-md border-light-gray text-center text-sm font-medium focus:border-sage-green focus:ring-sage-green" type="number" value="{{ item.quantity }}" min="0" data-line-key="{{ item.key }}">
+                <button type="button" class="quantity-button flex h-8 w-8 items-center justify-center rounded-full border border-light-gray text-burnt-sienna hover:bg-beige" data-line-key="{{ item.key }}" data-action="increment">+</button>
               </div>
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-sage-green hover:text-red-600">
+              <a href="/cart/change?id={{ item.key }}&amp;quantity=0" class="text-sage-green hover:text-red-600" data-remove-item>
                 <span class="material-symbols-outlined">delete</span>
               </a>
             </li>
@@ -46,7 +49,7 @@
         <div class="mt-4 space-y-4">
           <div class="flex justify-between text-sm">
             <span class="text-sage-green">Subtotale</span>
-            <span class="font-medium text-burnt-sienna">{{ cart.total_price | money }}</span>
+            <span class="font-medium text-burnt-sienna" data-cart-subtotal>{{ cart.total_price | money }}</span>
           </div>
           <div class="flex justify-between text-sm">
             <span class="text-sage-green">Spedizione stimata</span>
@@ -54,7 +57,7 @@
           </div>
           <div class="flex justify-between border-t border-light-gray pt-4 text-base font-semibold">
             <span class="text-burnt-sienna">Totale</span>
-            <span class="text-sage-green">{{ cart.total_price | money }}</span>
+            <span class="text-sage-green" data-cart-total>{{ cart.total_price | money }}</span>
           </div>
         </div>
         <form action="/checkout" method="post">
@@ -68,61 +71,10 @@
   </div>
 </div>
 
+
 {% schema %}
 {
   "name": "Cart Template",
   "settings": []
 }
 {% endschema %}
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const quantityButtons = document.querySelectorAll('.quantity-button');
-  const quantityInputs = document.querySelectorAll('.quantity-input');
-
-  quantityButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const line = this.dataset.line;
-      const action = this.dataset.action;
-      const input = document.querySelector(`.quantity-input[data-line="${line}"]`);
-      let value = parseInt(input.value);
-      if (action === 'increment') {
-        value++;
-      } else {
-        value = value > 1 ? value - 1 : 1;
-      }
-      input.value = value;
-      updateCart(line, value);
-    });
-  });
-
-  quantityInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      const line = this.dataset.line;
-      const quantity = this.value;
-      updateCart(line, quantity);
-    });
-  });
-
-  function updateCart(line, quantity) {
-    fetch('/cart/change.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        line: line,
-        quantity: quantity
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Here you would update the cart display, like subtotal and item count.
-      // For simplicity, we will just reload the page to see the changes.
-      // A full implementation would update the DOM without reloading.
-      window.location.reload();
-    });
-  }
-});
-</script>

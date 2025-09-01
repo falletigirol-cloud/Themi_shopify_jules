@@ -8,23 +8,3 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
   color: #A67C52; /* Burnt Sienna */
 }
-
-.btn {
-  @apply py-2 px-4 rounded-full transition-all duration-300;
-}
-
-.btn-primary {
-  @apply bg-sage-green text-white hover:bg-opacity-90;
-}
-
-.btn-secondary {
-  @apply bg-off-white text-burnt-sienna border border-sage-green/30 hover:bg-beige;
-}
-
-.card {
-  @apply bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow;
-}
-
-.form-input {
-  @apply w-full rounded-md border-light-gray focus:border-sage-green focus:ring-sage-green focus:ring-opacity-50;
-}

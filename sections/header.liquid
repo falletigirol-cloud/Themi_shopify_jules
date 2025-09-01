@@ -1,35 +1,33 @@
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-sage-green/20 px-10 py-3 sticky top-0 bg-off-white/80 backdrop-blur-sm z-10 font-lato">
-  <div class="flex items-center gap-4 text-burnt-sienna">
-    <div class="size-6 text-sage-green">
-      <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
-      </svg>
-    </div>
-    <h2 class="text-burnt-sienna text-xl font-bold leading-tight tracking-[-0.015em] font-playfair">{{ shop.name }}</h2>
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-light-gray px-10 py-3 sticky top-0 bg-off-white/80 backdrop-blur-sm z-10">
+  <div class="flex items-center gap-4">
+    <a href="/" class="flex items-center gap-2">
+      {% if section.settings.logo %}
+        <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ shop.name }}" class="h-8 w-auto">
+      {% else %}
+        <img src="{{ 'G001_logo.svg' | asset_url }}" alt="{{ shop.name }}" class="h-8 w-auto">
+      {% endif %}
+    </a>
   </div>
   <div class="flex flex-1 justify-end gap-4">
     <div class="hidden md:flex items-center gap-8">
       {% for link in linklists.main-menu.links %}
-        <a class="text-burnt-sienna text-sm font-medium leading-normal hover:text-sage-green transition-colors" href="{{ link.url }}">{{ link.title }}</a>
+        <a class="text-sm font-medium leading-normal hover:text-sage-green transition-colors" href="{{ link.url }}">{{ link.title }}</a>
       {% endfor %}
     </div>
     <div class="flex items-center gap-2">
-      <a href="/login" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-transparent border border-sage-green/30 hover:bg-sage-green/10 text-burnt-sienna text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+      <a href="/login" class="btn btn-secondary h-10 px-4 text-sm font-bold">
         <span class="truncate">Sign in</span>
       </a>
-      <a href="/search" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-transparent border border-sage-green/30 hover:bg-sage-green/10 text-burnt-sienna gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
-        <div class="text-burnt-sienna" data-icon="MagnifyingGlass" data-size="20px" data-weight="regular">
-          <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-          </svg>
-        </div>
+      <a href="/search" class="btn btn-secondary size-10 flex items-center justify-center">
+        <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+          <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+        </svg>
       </a>
-      <a href="/cart" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-sage-green/20 hover:bg-sage-green/30 text-burnt-sienna gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
-        <div class="text-burnt-sienna" data-icon="ShoppingBag" data-size="20px" data-weight="regular">
-          <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-            <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"></path>
-          </svg>
-        </div>
+      <a href="/cart" class="btn btn-secondary size-10 flex items-center justify-center relative">
+        <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+          <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"></path>
+        </svg>
+        <span class="absolute top-0 right-0 -mt-1 -mr-1 flex h-5 w-5 items-center justify-center rounded-full bg-sage-green text-xs font-bold text-white" data-cart-count>{{ cart.item_count }}</span>
       </a>
     </div>
   </div>
@@ -38,6 +36,12 @@
 {% schema %}
 {
   "name": "Header",
-  "settings": []
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
 }
 {% endschema %}

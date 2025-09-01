@@ -1,0 +1,47 @@
+<main class="flex flex-1 justify-center py-16 sm:py-24">
+  <div class="layout-content-container flex flex-col max-w-4xl w-full px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="font-['Newsreader'] text-5xl md:text-6xl font-bold text-burnt-sienna tracking-tight leading-tight">{{ page.title }}</h1>
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-sage-green leading-relaxed">
+        {{ section.settings.subtitle }}
+      </p>
+    </div>
+    <div class="mb-16">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="prose prose-lg text-sage-green">
+          <p>
+            {{ section.settings.main_text }}
+          </p>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <img alt="{{ section.settings.image.alt | escape }}" class="w-full h-full object-cover" src="{% if section.settings.image %}{{ section.settings.image | img_url: 'master' }}{% else %}{{ 'https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}{% endif %}">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "About Template",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "VeroBelloBio was born from a simple belief: that beauty should be kind to your skin, the planet, and your soul."
+    },
+    {
+      "type": "richtext",
+      "id": "main_text",
+      "label": "Main Text",
+      "default": "<p>Founded by Elena Rossi, a passionate advocate for natural living, our journey began with a quest to find truly organic beauty products that delivered on their promises. Frustrated by misleading labels and harsh chemicals, Elena set out to create a curated platform where conscious consumers could discover effective, ethical, and sustainable beauty solutions.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ]
+}
+{% endschema %}

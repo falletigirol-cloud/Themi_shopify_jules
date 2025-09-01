@@ -1,0 +1,24 @@
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <h1 class="text-4xl font-bold text-burnt-sienna font-playfair mb-8">Collections</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    {% for collection in collections %}
+      <div class="group">
+        <a href="{{ collection.url }}" class="block">
+          <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <div class="w-full h-80 bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" style="background-image: url('{{ collection.image | img_url: 'master' }}');"></div>
+          </div>
+          <div class="mt-5 text-center">
+            <p class="text-xl font-semibold text-burnt-sienna font-playfair">{{ collection.title }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "List Collections Template",
+  "settings": []
+}
+{% endschema %}

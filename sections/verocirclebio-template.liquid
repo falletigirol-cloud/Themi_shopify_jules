@@ -1,0 +1,51 @@
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="text-center mb-12">
+    <h1 class="text-5xl font-black leading-tight tracking-[-0.033em] text-burnt-sienna font-playfair">{{ page.title }}</h1>
+    <p class="text-lg font-normal leading-normal text-sage-green max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div class="prose prose-lg text-sage-green">
+      {{ section.settings.main_text }}
+    </div>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h3 class="text-2xl font-bold text-burnt-sienna font-playfair mb-4">Join the Circle</h3>
+      <p class="text-sage-green mb-4">Get exclusive access to our community, special discounts, and more.</p>
+      <form action="/contact#contact_form" method="post">
+        <input type="hidden" name="contact[tags]" value="VeroCircleBio">
+        <div class="space-y-4">
+          <div>
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" name="contact[name]" id="name" class="form-input" placeholder="Your name">
+          </div>
+          <div>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" name="contact[email]" id="email" class="form-input" placeholder="Your email">
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary w-full">Join Now</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "VeroCircleBio Template",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Welcome to our exclusive community."
+    },
+    {
+      "type": "richtext",
+      "id": "main_text",
+      "label": "Main Text",
+      "default": "<p>As a member of the VeroCircleBio, you'll get exclusive access to:</p><ul><li>Webinars with dermatologists and psychologists</li><li>Additional discounts on all products</li><li>A private community group</li><li>Premium content and tutorials</li></ul>"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <h1 class="text-4xl font-bold text-burnt-sienna font-playfair mb-8">Search</h1>
+  <form action="/search" method="get" role="search" class="flex items-center max-w-md mx-auto">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" class="form-input">
+    <button type="submit" class="btn btn-primary ml-2">Search</button>
+  </form>
+
+  {% if search.performed %}
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-burnt-sienna font-playfair mb-8">
+        {{ search.results_count }} results for "{{ search.terms | escape }}"
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for item in search.results %}
+          <div class="group">
+            <a href="{{ item.url }}" class="block">
+              <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <div class="w-full h-80 bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" style="background-image: url('{{ item.image | img_url: 'master' }}');"></div>
+              </div>
+              <div class="mt-5 text-center">
+                <p class="text-xl font-semibold text-burnt-sienna font-playfair">{{ item.title }}</p>
+                <p class="text-base text-sage-green">{{ item.price | money }}</p>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Search Template",
+  "settings": []
+}
+{% endschema %}

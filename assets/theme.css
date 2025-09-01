@@ -1,0 +1,13 @@
+body {
+  font-family: 'Lato', sans-serif;
+  color: #A67C52;
+  /* Burnt Sienna */
+  background-color: #F8F8F8;
+  /* Off-white */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: #A67C52;
+  /* Burnt Sienna */
+}

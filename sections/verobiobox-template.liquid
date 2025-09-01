@@ -1,0 +1,108 @@
+<main class="flex-1">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-5xl font-black leading-tight tracking-[-0.033em] text-burnt-sienna font-playfair">{{ page.title }}</h1>
+      <p class="text-lg font-normal leading-normal text-sage-green max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 py-12">
+      {% for block in section.blocks %}
+        <div class="card flex flex-1 flex-col gap-6 p-6 text-center">
+          <div class="flex flex-col gap-2">
+            <h3 class="text-lg font-bold leading-tight text-burnt-sienna font-playfair">{{ block.settings.title }}</h3>
+            <p class="flex items-baseline justify-center gap-1 text-burnt-sienna">
+              <span class="text-5xl font-black leading-tight tracking-[-0.033em]">{{ block.settings.price }}</span>
+              <span class="text-base font-medium leading-tight">/{{ block.settings.period }}</span>
+            </p>
+          </div>
+          <a href="{{ block.settings.button_link }}" class="btn btn-primary w-full">{{ block.settings.button_text }}</a>
+          <div class="flex flex-col gap-3 text-left">
+            {{ block.settings.features }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "VeroBioBox Template",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Scegli l'opzione perfetta per te e inizia il tuo viaggio nella bellezza consapevole."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Mensile"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "€39"
+        },
+        {
+          "type": "text",
+          "id": "period",
+          "label": "Period",
+          "default": "mese"
+        },
+        {
+          "type": "richtext",
+          "id": "features",
+          "label": "Features",
+          "default": "<ul><li>Prodotti biologici selezionati</li><li>Spedizione gratuita</li><li>Sconti esclusivi</li></ul>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Abbonati"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "VeroBioBox Template",
+      "blocks": [
+        { "type": "plan" },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "3 Mesi",
+            "price": "€109",
+            "period": "trimestre",
+            "features": "<ul><li>Prodotti biologici selezionati</li><li>Spedizione gratuita</li><li>Sconti esclusivi</li><li>Regalo bonus</li></ul>"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "6 Mesi",
+            "price": "€199",
+            "period": "semestre",
+            "features": "<ul><li>Prodotti biologici selezionati</li><li>Spedizione gratuita</li><li>Sconti esclusivi</li><li>Regalo premium</li><li>Selezione personalizzata</li></ul>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

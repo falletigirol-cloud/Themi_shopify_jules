@@ -5,38 +5,20 @@
       {% for block in section.blocks %}
         <div class="card flex flex-col gap-4 p-6 text-left">
           <div class="flex items-center gap-3">
-            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" style="background-image: url('{{ block.settings.image | img_url: 'master' }}');"></div>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" style="background-image: url('{% if block.settings.image %}{{ block.settings.image | img_url: 'master' }}{% else %}{% case forloop.index %}{% when 1 %}{{ 'https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}{% when 2 %}{{ 'https://images.pexels.com/photos/3772510/pexels-photo-3772510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}{% else %}{{ 'https://images.pexels.com/photos/3762804/pexels-photo-3762804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}{% endcase %}{% endif %}');"></div>
             <div class="flex-1">
               <p class="text-burnt-sienna text-base font-medium leading-normal font-playfair">{{ block.settings.name }}</p>
               <p class="text-sage-green text-sm font-normal leading-normal font-lato">{{ block.settings.date }}</p>
             </div>
           </div>
           <div class="flex gap-0.5">
-            <div class="text-sage-green" data-icon="Star" data-size="20px" data-weight="fill">
-              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
-              </svg>
-            </div>
-            <div class="text-sage-green" data-icon="Star" data-size="20px" data-weight="fill">
-              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
-              </svg>
-            </div>
-            <div class="text-sage-green" data-icon="Star" data-size="20px" data-weight="fill">
-              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
-              </svg>
-            </div>
-            <div class="text-sage-green" data-icon="Star" data-size="20px" data-weight="fill">
-              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
-              </svg>
-            </div>
-            <div class="text-sage-green" data-icon="Star" data-size="20px" data-weight="fill">
-              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
-              </svg>
-            </div>
+            {% for i in (1..5) %}
+              <div class="text-sage-green" data-icon="Star" data-size="20px" data-weight="fill">
+                <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                </svg>
+              </div>
+            {% endfor %}
           </div>
           <p class="text-burnt-sienna text-base font-normal leading-relaxed font-lato">
             {{ block.settings.text }}
@@ -71,17 +53,20 @@
         {
           "type": "text",
           "id": "name",
-          "label": "Name"
+          "label": "Name",
+          "default": "Sophia Green"
         },
         {
           "type": "text",
           "id": "date",
-          "label": "Date"
+          "label": "Date",
+          "default": "2 months ago"
         },
         {
           "type": "text",
           "id": "text",
-          "label": "Text"
+          "label": "Text",
+          "default": "I've been using VeroBelloBio products for a year now, and my skin has never looked better! The organic ingredients are so gentle and effective. Highly recommend!"
         }
       ]
     }
@@ -89,7 +74,26 @@
   "presets": [
     {
       "name": "Testimonials",
-      "category": "Content"
+      "category": "Content",
+      "blocks": [
+        { "type": "testimonial" },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Ethan Carter",
+            "date": "3 months ago",
+            "text": "The community aspect of VeroBelloBio is amazing. I've learned so much from other members and discovered new products I love."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Olivia White",
+            "date": "4 months ago",
+            "text": "I'm impressed with VeroBelloBio's commitment to sustainability. Their products are not only great for my skin but also align with my values."
+          }
+        }
+      ]
     }
   ]
 }

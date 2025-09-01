@@ -5,7 +5,7 @@
     </div>
     <div class="p-4 @container">
       <div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-center bg-white shadow-lg overflow-hidden">
-        <div class="w-full @xl:w-1/2 bg-center bg-no-repeat aspect-video @xl:aspect-auto @xl:h-full bg-cover" style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"></div>
+        <div class="w-full @xl:w-1/2 bg-center bg-no-repeat aspect-video @xl:aspect-auto @xl:h-full bg-cover" style="background-image: url('{% if section.settings.image %}{{ section.settings.image | img_url: 'master' }}{% else %}{{ 'https://images.pexels.com/photos/3762804/pexels-photo-3762804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}{% endif %}');"></div>
         <div class="flex w-full @xl:w-1/2 grow flex-col items-stretch justify-center gap-6 p-8 md:p-12">
           <div class="flex flex-col gap-2">
             <p class="text-burnt-sienna text-2xl font-bold leading-tight tracking-[-0.015em] font-playfair">{{ section.settings.promo_title }}</p>
@@ -89,8 +89,7 @@
   ],
   "presets": [
     {
-      "name": "VeroBioBox Promo",
-      "category": "Content"
+      "name": "VeroBioBox Promo"
     }
   ]
 }

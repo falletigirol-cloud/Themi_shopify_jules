@@ -1,5 +1,8 @@
-<div class="w-full">
-  <div class="flex min-h-[560px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-start justify-end px-6 pb-10 md:px-12 md:pb-12" style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRf9M78atB7xw73g3DKI3DuPwBcZRO09wwXTS9BLcAu0nxqbLJpUrmlCBRtdVUzaog8gJmmMB6hteh0spvJqaWQ4brBqP0rUPMxsBkDCN4Mwup4uGHLG5En327WjSY1FouaH9_6OEjXTP7wJmSHE4G51mDFTCK7TtBW1AkkK5wKievAmF4qKemPLwHc2EyeeIlU3lmcS3SeG6kxg2ogS1OQ6gSNFavliYb13BP_tZlXsnzYUnMGPBHoui4P8dbn0jdhTWKmyjYUTc");'>
+<div class="w-full relative">
+  <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+    <source src="{{ 'G002_hero_video.mp4' | asset_url }}" type="video/mp4">
+  </video>
+  <div class="relative flex min-h-[560px] flex-col gap-6 bg-black/50 rounded-2xl items-start justify-end px-6 pb-10 md:px-12 md:pb-12">
     <div class="flex flex-col gap-4 text-left max-w-xl">
       <h1 class="text-white text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl font-playfair">
         {{ section.settings.title }}
@@ -23,6 +26,11 @@
 {
   "name": "Hero",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
     {
       "type": "text",
       "id": "title",
@@ -56,6 +64,11 @@
       "type": "url",
       "id": "button_2_link",
       "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
     }
   ]
 }

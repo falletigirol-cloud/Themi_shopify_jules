@@ -1,0 +1,54 @@
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="text-center mb-12">
+    <h1 class="text-5xl font-black leading-tight tracking-[-0.033em] text-burnt-sienna font-playfair">{{ page.title }}</h1>
+    <p class="text-lg font-normal leading-normal text-sage-green max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="md:col-span-1">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold text-burnt-sienna font-playfair mb-4">Categories</h3>
+        <ul class="space-y-2">
+          {% for link in linklists.body-hair.links %}
+            <li><a href="{{ link.url }}" class="text-sage-green hover:text-burnt-sienna transition-colors">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="md:col-span-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {% for product in collections[section.settings.collection].products %}
+          <div class="group">
+            <a href="{{ product.url }}" class="block">
+              <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <div class="w-full h-80 bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" style="background-image: url('{{ product.featured_image | img_url: 'master' }}');"></div>
+              </div>
+              <div class="mt-5 text-center">
+                <p class="text-xl font-semibold text-burnt-sienna font-playfair">{{ product.title }}</p>
+                <p class="text-base text-sage-green">{{ product.price | money }}</p>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Body & Hair Template",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover our collection of organic and natural body & hair products."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ]
+}
+{% endschema %}

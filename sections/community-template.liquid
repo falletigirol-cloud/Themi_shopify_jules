@@ -1,0 +1,106 @@
+<main class="flex flex-1 justify-center py-16 px-4">
+  <div class="layout-content-container flex flex-col max-w-5xl flex-1 gap-12">
+    <div class="text-center flex flex-col gap-4 items-center">
+      <h1 class="text-burnt-sienna text-5xl font-bold leading-tight tracking-tighter font-playfair">{{ page.title }}</h1>
+      <p class="text-sage-green text-lg font-normal leading-relaxed max-w-2xl">
+        {{ section.settings.subtitle }}
+      </p>
+      <a href="{{ section.settings.button_link }}" class="btn btn-primary h-12 px-6 text-base font-bold mt-4">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+    <div class="flex flex-col gap-8">
+      <h2 class="text-burnt-sienna text-3xl font-bold leading-tight tracking-tight">Recent Activity</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {% for block in section.blocks %}
+          <div class="card flex flex-col gap-4 overflow-hidden">
+            <div class="w-full bg-center bg-no-repeat aspect-video bg-cover" style="background-image: url('{% if block.settings.image %}{{ block.settings.image | img_url: 'master' }}{% else %}{{ 'https://picsum.photos/600/400?random=' | append: forloop.index }}{% endif %}');"></div>
+            <div class="p-6 flex flex-col gap-2">
+              <p class="text-sage-green text-sm font-bold leading-normal">{{ block.settings.tag }}</p>
+              <h3 class="text-burnt-sienna text-xl font-bold leading-tight">{{ block.settings.title }}</h3>
+              <p class="text-sage-green text-base font-normal leading-relaxed">
+                {{ block.settings.text }}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Community Template",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Connect with like-minded individuals, share your experiences, and discover the latest in organic beauty. Enjoy exclusive webinars, discussions, and support from fellow members."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Become a Member"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community Template",
+      "blocks": [
+        {
+          "type": "post",
+          "settings": {
+            "tag": "New Post",
+            "title": "Sustainable Beauty Tips for Summer",
+            "text": "Elena Rossi shares her favorite eco-friendly beauty routines for the warmer months. Learn how to keep your skin glowing while minimizing your environmental impact."
+          }
+        },
+        {
+          "type": "post",
+          "settings": {
+            "tag": "Discussion",
+            "title": "Best Organic Sunscreens?",
+            "text": "Join the conversation and share your recommendations for organic sunscreens that are effective and safe for your skin and the planet."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,5 +1,12 @@
 {
   "current": {
-    "content_for_index": []
+    "content_for_index": [
+      "hero",
+      "commitment",
+      "bestsellers",
+      "testimonials",
+      "community-cta",
+      "verobiobox-promo"
+    ]
   }
 }
